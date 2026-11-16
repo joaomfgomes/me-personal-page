@@ -1,28 +1,28 @@
 // Tudo o que é "teu" e muda pouco está aqui. Edita este ficheiro primeiro.
 export const site = {
-  name: 'Nome Apelido',
-  handle: 'nomeapelido',
-  initials: 'NA',
+  name: 'João Miguel Gomes',
+  handle: 'joaomiguelgomes',
+  initials: 'JMG',
   // Título grande do topo. Curto, na primeira pessoa, sobre o que fazes.
   headline: 'I build LLM systems and check that they actually work.',
   // Parágrafos curtos por baixo do título. Podes usar links HTML (<a href="...">).
   intro: [
-    'I’m a junior AI engineer in Lisbon. I build retrieval and agent systems on top of language models, and I spend most of my time on the part that decides whether they’re any good: eval sets, reading failures and fixing retrieval.',
+    'I’m a junior AI engineer in Braga, Portugal. I build retrieval and agent systems on top of language models, and I spend most of my time on the part that decides whether they’re any good: eval sets, reading failures and fixing retrieval.',
     'Right now I’m improving <a href="/projects/lexpt">LexPT</a>, a question-answering system over Portuguese law. I write down what I learn in <a href="/notes">my notes</a>.',
   ],
   // Frase de descrição para o Google e para links partilhados.
-  tagline: 'Junior AI engineer in Lisbon. I build retrieval and agent systems, and I measure them.',
-  role: 'Junior AI engineer',
-  location: 'Lisbon',
+  tagline: 'AI engineer in Braga, Portugal. I build retrieval and agent systems, and I measure them.',
+  role: 'AI engineer',
+  location: 'Portugal',
   // Estado de procura de emprego. Deixa vazio ('') quando já não estiveres à procura.
-  availability: 'Open to junior AI engineer roles in Lisbon or remote (EU).',
-  email: 'nome.apelido@email.com',
-  replyPromise: 'I reply within two working days.',
+  availability: 'Open to AI engineer roles in Porto or remote (EU).',
+  email: 'joaomiguelfgomes@gmail.com',
+  replyPromise: '',
   // Põe a tua foto em public/portrait.jpg e escreve aqui '/portrait.jpg'. Vazio = iniciais.
   portrait: '',
   links: {
-    github: 'https://github.com/nomeapelido',
-    linkedin: 'https://www.linkedin.com/in/nomeapelido',
+    github: 'https://github.com/joaomfgomes',
+    linkedin: 'https://www.linkedin.com/in/joaomfgomes',
     cv: '/cv.pdf',
   },
   // Endpoint do teu RAG. Recebe POST {question} e devolve {answer, sources: [{title, url}]}.
@@ -30,7 +30,7 @@ export const site = {
   askEndpoint: '',
   // Título e subtítulo do topo (a caixa de perguntas).
   askTitle: 'What would you like to know about me?',
-  askSubtitle: 'Ask about my work, my projects or me. Answers come from what I’ve written on this site.',
+  askSubtitle: 'Ask about my work, my projects or me.',
   // Exemplos que vão aparecendo dentro da caixa.
   askPlaceholders: [
     'How did you evaluate LexPT?',
