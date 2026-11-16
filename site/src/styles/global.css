@@ -8,19 +8,19 @@
   --muted: #6b6b6b;
   --line: #e6e6e6;
   --soft: #f4f4f4;
-  --link: #0d0d0d;
+  --link: #2a7ae2;
   --font: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #171717; --text: #ececec; --muted: #9b9b9b; --line: #303030; --soft: #232323;
-    --link: #ececec; color-scheme: dark;
+    --link: #5b9cf5; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #171717; --text: #ececec; --muted: #9b9b9b; --line: #303030; --soft: #232323;
-  --link: #ececec; color-scheme: dark;
+  --link: #5b9cf5; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -30,8 +30,8 @@ body {
   font: 400 17px/1.65 var(--font); font-kerning: normal;
   padding: 0 max(20px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px));
 }
-a { color: var(--link); text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
-a:hover { text-decoration-color: currentColor; }
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--text); text-decoration: underline; }
 :focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 img { max-width: 100%; }
 h1, h2, h3 { line-height: 1.25; text-wrap: balance; }
@@ -154,6 +154,7 @@ dialog.search::backdrop { background: rgb(0 0 0 / 0.3); }
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* contact */
-.contact .plain-btn { color: var(--text); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.contact .plain-btn { color: var(--link); }
+.contact .plain-btn:hover { color: var(--text); text-decoration: underline; }
 
 @media (hover: none) { .composer .hint { visibility: hidden; } }
