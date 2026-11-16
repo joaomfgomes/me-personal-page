@@ -1,0 +1,33 @@
+---
+import { site } from '../site.config';
+const intro = site.availability ? `${site.availability} ` : '';
+---
+<section class="contact" id="contact" style="scroll-margin-top:24px" aria-labelledby="contact-title">
+  <h2 class="list-heading" id="contact-title" style="margin-top:0">Contact</h2>
+  <p>
+    {intro}The fastest way to reach me is email:{' '}
+    <a href={`mailto:${site.email}`}>{site.email}</a>{' '}
+    (<button class="plain-btn copy-email" type="button" data-email={site.email}>copy</button>).{' '}
+    {site.replyPromise}
+  </p>
+  <p>
+    You can also find me on <a href={site.links.linkedin}>LinkedIn</a> and{' '}
+    <a href={site.links.github}>GitHub</a>, or read my <a href={site.links.cv}>CV</a>.
+  </p>
+  <p class="copy-status" aria-live="polite" style="color:var(--muted);font-size:15px"></p>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-email').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const email = btn.dataset.email ?? '';
+      const status = btn.closest('.contact')?.querySelector('.copy-status');
+      try {
+        await navigator.clipboard.writeText(email);
+        if (status) status.textContent = `Copied ${email}.`;
+      } catch {
+        if (status) status.textContent = `My email is ${email}.`;
+      }
+    });
+  });
+</script>

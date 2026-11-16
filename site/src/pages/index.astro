@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Ask from '../components/Ask.astro';
+import Contact from '../components/Contact.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { fmtDate } from '../lib/format';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+const all = (await getCollection('notes'))
+  .filter((n) => !n.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const notes = all.slice(0, 6);
+---
+<Base>
+  <Ask />
+
+  <h2 class="list-heading" id="projects">Projects</h2>
+  <ul class="post-list">
+    {projects.map((p) => <ProjectCard p={p} />)}
+  </ul>
+
+  <h2 class="list-heading">Notes</h2>
+  <ul class="post-list">
+    {notes.map((n) => (
+      <li>
+        <span class="post-meta">{fmtDate(n.data.date)}</span>
+        <a class="post-link" href={`/notes/${n.id}`}>{n.data.title}</a>
+      </li>
+    ))}
+  </ul>
+  {all.length > notes.length && <p class="more"><a href="/notes">All {all.length} notes</a></p>}
+
+  <Contact />
+</Base>

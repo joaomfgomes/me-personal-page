@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { emphasis } from '../lib/format';
+interface Props { p: CollectionEntry<'projects'> }
+const { p } = Astro.props;
+const state = { live: 'Live', 'in progress': 'In progress', archived: 'Archived' }[p.data.status];
+const plain = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '$1');
+---
+<li>
+  <span class="post-meta">{state}{p.data.stack.length > 0 && `, ${p.data.stack.slice(0, 3).join(', ')}`}</span>
+  <a class="post-link" href={`/projects/${p.id}`}>{p.data.title}</a>
+  <p>{p.data.result ? plain(p.data.result) : p.data.summary}</p>
+</li>

@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { fmtDate } from '../../lib/format';
+
+const notes = (await getCollection('notes'))
+  .filter((n) => !n.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Notes" description="Short write-ups of what I learn building LLM systems.">
+  <h1 class="title" style="margin-top:0">Notes</h1>
+  <p class="summary">Short write-ups of what I learn building LLM systems.</p>
+  <ul class="post-list" style="margin-top:36px">
+    {notes.map((n) => (
+      <li>
+        <span class="post-meta">{fmtDate(n.data.date)}</span>
+        <a class="post-link" href={`/notes/${n.id}`}>{n.data.title}</a>
+      </li>
+    ))}
+  </ul>
+  <p class="more">Subscribe <a href="/rss.xml">via RSS</a>.</p>
+</Base>

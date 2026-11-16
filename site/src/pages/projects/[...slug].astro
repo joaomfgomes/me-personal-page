@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Contact from '../../components/Contact.astro';
+import { emphasis } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { p } }));
+}
+const { p } = Astro.props;
+const { Content } = await render(p);
+const state = { live: 'Live', 'in progress': 'In progress', archived: 'Archived' }[p.data.status];
+---
+<Base title={p.data.title} description={p.data.summary}>
+  <article>
+    <a class="back" href="/projects">← All projects</a>
+    <h1 class="title">{p.data.title}</h1>
+    <p class="date">
+      {state}{p.data.stack.length > 0 && ` · ${p.data.stack.join(', ')}`}
+      {p.data.repo && <> · <a href={p.data.repo}>code</a></>}
+      {p.data.demo && <> · <a href={p.data.demo}>demo</a></>}
+    </p>
+    <p class="summary">{p.data.summary}</p>
+    {p.data.result && <p class="summary" style="color:var(--text)" set:html={emphasis(p.data.result)} />}
+    <div class="prose"><Content /></div>
+  </article>
+  <Contact />
+</Base>

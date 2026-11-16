@@ -1,0 +1,275 @@
+<title>CV Modelo AI Engineer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: a single-column CV "sheet" on the left; reviewer's margin notes in ink on the right, aligned row by row; notes stack under each section on phones. */
+:root {
+  --bg: #eceef2;
+  --sheet: #ffffff;
+  --fg: #1b1e24;
+  --muted: #5b6270;
+  --rule: #d9dce3;
+  --ink: #2f47c4;
+  --ink-soft: #e6eafb;
+  --font-display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121419; --sheet: #1b1e25; --fg: #e7e9ee; --muted: #9aa1ae; --rule: #2e333d;
+    --ink: #9fb0ff; --ink-soft: #232a45; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121419; --sheet: #1b1e25; --fg: #e7e9ee; --muted: #9aa1ae; --rule: #2e333d;
+  --ink: #9fb0ff; --ink-soft: #232a45; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body);
+  font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+.intro { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; justify-content: space-between; }
+.intro h1 { font-family: var(--font-display); font-size: 1.6rem; margin: 0 0 4px; text-wrap: balance; }
+.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+.tools { display: flex; gap: 8px; flex-wrap: wrap; }
+button {
+  font: 500 0.85rem var(--font-body); color: var(--fg); background: var(--sheet);
+  border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; cursor: pointer;
+}
+button:hover { border-color: var(--ink); color: var(--ink); }
+button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.doc { display: grid; grid-template-columns: minmax(0, 680px) minmax(0, 1fr); column-gap: 28px; }
+.doc.no-notes { grid-template-columns: minmax(0, 680px); justify-content: center; }
+.cell { background: var(--sheet); padding: 0 44px; min-width: 0; }
+.cell.first { padding-top: 40px; border-radius: 4px 4px 0 0; }
+.cell.last { padding-bottom: 40px; border-radius: 0 0 4px 4px; }
+.note {
+  min-width: 0; align-self: start; font-size: 0.86rem; color: var(--ink);
+  border-left: 2px solid var(--ink); padding: 2px 0 2px 14px; margin-top: 18px;
+}
+.note b { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+.note p { margin: 0 0 6px; }
+
+/* CV typography */
+.name { font-family: var(--font-display); font-weight: 600; font-size: 2rem; letter-spacing: -0.01em; margin: 0; line-height: 1.1; }
+.role { font-weight: 500; margin: 4px 0 8px; }
+.contact { color: var(--muted); font-size: 0.86rem; margin: 0; overflow-wrap: anywhere; }
+h2 {
+  font-family: var(--font-mono); font-weight: 500; font-size: 0.74rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin: 0 0 10px; padding-top: 22px;
+  border-bottom: 1px solid var(--rule); padding-bottom: 4px;
+}
+.entry { margin-bottom: 14px; }
+.entry:last-child { margin-bottom: 0; }
+.entry-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; }
+.entry-head strong { font-weight: 600; }
+.meta { color: var(--muted); font-size: 0.84rem; font-variant-numeric: tabular-nums; }
+.stack { color: var(--muted); font-size: 0.84rem; margin: 0 0 4px; }
+ul { margin: 4px 0 0; padding-left: 18px; }
+li { margin-bottom: 3px; }
+li::marker { color: var(--muted); }
+.summary { margin: 0; }
+.skills { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; }
+.skills dt { font-weight: 600; }
+.skills dd { margin: 0; min-width: 0; }
+
+.rules { background: var(--ink-soft); border-radius: 6px; padding: 20px 24px; }
+.rules h3 { font-family: var(--font-display); margin: 0 0 8px; font-size: 1.1rem; }
+.rules ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.toast { color: var(--ink); font-size: 0.85rem; min-height: 1.2em; }
+
+@media (max-width: 860px) {
+  .doc { grid-template-columns: minmax(0, 1fr); }
+  .cell { padding: 0 20px; }
+  .note { margin: 12px 0 8px; }
+  .skills { grid-template-columns: 1fr; }
+  .skills dd { margin-bottom: 6px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div>
+      <h1>O CV do mês 10</h1>
+      <p>É assim que o teu CV deve estar quando começares a candidatar-te. O CV está em inglês, como pedem quase todas as vagas de IA. As notas a azul explicam o porquê de cada parte e não fazem parte do CV.</p>
+    </div>
+    <div class="tools">
+      <button id="toggle-notes" type="button">Esconder notas</button>
+      <button id="copy-cv" type="button">Copiar texto do CV</button>
+    </div>
+  </header>
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <div class="doc" id="doc">
+    <!-- HEADER -->
+    <section class="cell first cv">
+      <p class="name">Nome Apelido</p>
+      <p class="role">AI Engineer · Python, RAG, LLM evaluation, agents</p>
+      <p class="contact">Lisbon, Portugal · Open to hybrid or remote (EU) · nome.apelido@email.com · +351 9XX XXX XXX<br>linkedin.com/in/nomeapelido · github.com/nomeapelido · nomeapelido.dev</p>
+    </section>
+    <aside class="note">
+      <b>Cabeçalho</b>
+      <p>O título diz o cargo que queres, não o que tens hoje. Escreve "AI Engineer", não "Aspiring AI Engineer".</p>
+      <p>Nada de foto, data de nascimento ou morada completa. Basta a cidade e o regime de trabalho.</p>
+    </aside>
+
+    <!-- SUMMARY -->
+    <section class="cell cv">
+      <h2>Summary</h2>
+      <p class="summary">Software engineer who builds LLM applications and measures them. I've shipped three production-style projects with eval suites, tracing and cost controls, including a RAG system used weekly by 40 law students and a support agent running at a local business. I care about retrieval quality, honest evaluation and clean Python.</p>
+    </section>
+    <aside class="note">
+      <b>Resumo</b>
+      <p>Três frases, com factos verificáveis. Sem "apaixonado por IA" nem "fast learner".</p>
+      <p>A palavra que te distingue é <em>measure</em>: a maioria dos candidatos faz demos e não as avalia.</p>
+    </aside>
+
+    <!-- PROJECTS -->
+    <section class="cell cv">
+      <h2>Projects</h2>
+      <div class="entry">
+        <div class="entry-head"><strong>LexPT: question answering over Portuguese law</strong><span class="meta">2026 · github.com/nomeapelido/lexpt</span></div>
+        <p class="stack">Python, FastAPI, PostgreSQL + pgvector, BM25, cross-encoder reranker, Langfuse, Docker, Fly.io</p>
+        <ul>
+          <li>Built ingestion for 12,000 documents from Diário da República, with clause-aware chunking and metadata filters.</li>
+          <li>Wrote a 150-question eval set with a law student. Raised recall@5 from 0.61 to 0.84 with hybrid search and reranking.</li>
+          <li>Measured faithfulness at 0.91 with an LLM judge, checked against 60 human labels (88% agreement).</li>
+          <li>Kept p95 latency at 2.8 s and cost at €0.004 per query through caching and routing easy queries to a smaller model.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><strong>TicketPilot: support agent for a local e-commerce shop</strong><span class="meta">2026 · live client</span></div>
+        <p class="stack">Python, tool calling, MCP, structured outputs (Pydantic), Langfuse, pytest</p>
+        <ul>
+          <li>Agent searches the help center, checks order status and drafts refunds. Every refund needs human approval.</li>
+          <li>Wrote 40 prompt-injection test cases and added input/output guardrails. 38 of 40 attacks are blocked.</li>
+          <li>Cut cost per ticket by 38% by trimming conversation context. Agent now resolves 31% of tier-1 tickets.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><strong>Open-source contributions</strong><span class="meta">2026</span></div>
+        <ul>
+          <li>3 merged pull requests to Langfuse (Python SDK): a tracing bug fix, tests and documentation.</li>
+        </ul>
+      </div>
+    </section>
+    <aside class="note">
+      <b>Projetos: a secção principal</b>
+      <p>Sem experiência na área, os projetos ocupam o lugar da experiência e vêm primeiro.</p>
+      <p>Cada bullet segue a fórmula <em>ação + técnica + resultado com número</em>.</p>
+      <p>Os números aqui são ilustrativos. Os teus têm de ser reais, porque o entrevistador vai pedir-te para os explicar. Um número inventado é pior do que não ter número nenhum.</p>
+      <p>"Live client" e "PR merged" pesam mais do que qualquer certificado.</p>
+    </aside>
+
+    <!-- EXPERIENCE -->
+    <section class="cell cv">
+      <h2>Experience</h2>
+      <div class="entry">
+        <div class="entry-head"><strong>Operations Analyst, Empresa Exemplo</strong><span class="meta">2021 – 2025 · Porto</span></div>
+        <ul>
+          <li>Automated weekly reporting with Python and SQL, saving the team about 6 hours a week.</li>
+          <li>Built an internal tool to classify supplier emails with an LLM API, used daily by 5 colleagues.</li>
+        </ul>
+      </div>
+    </section>
+    <aside class="note">
+      <b>Experiência anterior</b>
+      <p>Põe aqui o teu emprego real, mesmo que não seja da área. Mostra só o que tem ligação a tecnologia ou a resultados.</p>
+      <p>Se automatizaste alguma coisa no trabalho atual, é ouro: é experiência real em produção.</p>
+    </aside>
+
+    <!-- SKILLS -->
+    <section class="cell cv">
+      <h2>Skills</h2>
+      <dl class="skills">
+        <dt>Languages</dt><dd>Python (advanced), SQL, TypeScript (basic)</dd>
+        <dt>LLM engineering</dt><dd>RAG, hybrid search, reranking, tool calling, agents, MCP, structured outputs, prompt-injection defense</dd>
+        <dt>Evaluation</dt><dd>Eval set design, recall@k, LLM-as-judge calibration, error analysis, Langfuse tracing</dd>
+        <dt>Backend &amp; infra</dt><dd>FastAPI, PostgreSQL, pgvector, Docker, GitHub Actions, pytest, Fly.io</dd>
+        <dt>ML foundations</dt><dd>PyTorch, transformers, embeddings, LoRA fine-tuning</dd>
+      </dl>
+    </section>
+    <aside class="note">
+      <b>Competências</b>
+      <p>Agrupadas por tema e só com o que consegues defender numa entrevista técnica. Se puseres uma coisa, vão perguntar-te por ela.</p>
+      <p>Usa as palavras dos anúncios (RAG, evals, agents): os filtros automáticos procuram-nas.</p>
+    </aside>
+
+    <!-- EDUCATION -->
+    <section class="cell last cv">
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-head"><strong>Licenciatura em [o teu curso], Universidade [X]</strong><span class="meta">2017 – 2020</span></div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><strong>Self-directed study</strong><span class="meta">2025 – 2026</span></div>
+        <p class="stack" style="margin:0">Harvard CS50P · Karpathy, Neural Networks: Zero to Hero · DataTalks.Club LLM Zoomcamp</p>
+      </div>
+      <h2>Languages</h2>
+      <p class="summary">Portuguese (native) · English (C1, professional working proficiency)</p>
+    </section>
+    <aside class="note">
+      <b>Formação</b>
+      <p>Vai no fim. Se não tens curso, apaga essa linha sem problema: nas vagas de AI engineering contam mais os projetos.</p>
+      <p>Cursos online numa só linha. Não são o argumento principal, mostram só que és disciplinado a estudar.</p>
+    </aside>
+  </div>
+
+  <section class="rules">
+    <h3>Regras do CV final</h3>
+    <ol>
+      <li>Uma página, em PDF, com o nome no ficheiro: <code>NomeApelido_AI_Engineer_CV.pdf</code>.</li>
+      <li>Uma só coluna, sem tabelas, ícones nem barras de nível. Os filtros automáticos (ATS) leem mal tudo isso.</li>
+      <li>Todos os números são reais e consegues explicar como os mediste.</li>
+      <li>Os links levam a repositórios com README completo: problema, arquitetura, evals, custos e o que falhou.</li>
+      <li>Adapta o resumo e a ordem das competências a cada vaga. Demora 10 minutos e faz diferença.</li>
+      <li>Antes de enviar, pede a 2 pessoas da área que o leiam durante 30 segundos e te digam o que retiveram.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+(function () {
+  var doc = document.getElementById('doc');
+  var notes = Array.prototype.slice.call(document.querySelectorAll('.note'));
+  var toggle = document.getElementById('toggle-notes');
+  var toast = document.getElementById('toast');
+  var shown = true;
+  try { if (localStorage.getItem('cv-notes') === 'off') shown = false; } catch (e) {}
+  function apply() {
+    notes.forEach(function (n) { n.hidden = !shown; });
+    doc.classList.toggle('no-notes', !shown);
+    toggle.textContent = shown ? 'Esconder notas' : 'Mostrar notas';
+  }
+  toggle.addEventListener('click', function () {
+    shown = !shown; apply();
+    try { localStorage.setItem('cv-notes', shown ? 'on' : 'off'); } catch (e) {}
+  });
+  apply();
+
+  document.getElementById('copy-cv').addEventListener('click', function () {
+    var text = Array.prototype.map.call(document.querySelectorAll('.cv'), function (s) {
+      return s.innerText.trim();
+    }).join('\n\n');
+    function done(msg) { toast.textContent = msg; setTimeout(function () { toast.textContent = ''; }, 3000); }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        done('Texto do CV copiado. Cola-o no Word ou Google Docs e substitui pelos teus dados.');
+      }, function () { selectFallback(); });
+    } catch (e) { selectFallback(); }
+    function selectFallback() {
+      var r = document.createRange(); r.selectNodeContents(doc);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      done('Não deu para copiar automaticamente. O CV ficou selecionado: usa Cmd+C.');
+    }
+  });
+})();
+</script>

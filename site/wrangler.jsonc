@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Site estático servido pela Cloudflare (Workers com static assets).
+  "name": "joaomiguelgomes",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  // Liga o domínio. O domínio tem de estar na mesma conta Cloudflare.
+  "routes": [
+    { "pattern": "joaomiguelgomes.com", "custom_domain": true },
+    { "pattern": "www.joaomiguelgomes.com", "custom_domain": true }
+  ]
+}
