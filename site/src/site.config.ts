@@ -28,7 +28,9 @@ export const site = {
   // Endpoint do teu RAG. Recebe POST {question} e devolve {answer, sources: [{title, url}]}.
   // Vazio = a caixa pesquisa no conteúdo do site e mostra as páginas relevantes.
   askEndpoint: '',
-  // Título e subtítulo do topo (a caixa de perguntas).
+  // Versão clássica: sugestões por baixo da caixa de perguntas.
+  askQuestions: ['How did you evaluate LexPT?', 'What broke in TicketPilot?', 'What are you learning now?'],
+  // Título e subtítulo do topo (a caixa de perguntas, só na versão OpenAI).
   askTitle: 'What would you like to know about me?',
   askSubtitle: 'Ask about my work, my projects or me. Answers come from what I’ve written on this site.',
   // Exemplos que vão aparecendo dentro da caixa.

@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import Ask from '../components/Ask.astro';
 import Contact from '../components/Contact.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../site.config';
 import { fmtDate } from '../lib/format';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
@@ -13,9 +14,14 @@ const all = (await getCollection('notes'))
 const notes = all.slice(0, 6);
 ---
 <Base>
+  <section class="intro">
+    <p class="lead">{site.headline}</p>
+    {site.intro.map((para) => <p set:html={para} />)}
+  </section>
+
   <Ask />
 
-  <h2 class="list-heading" id="projects">Projects</h2>
+  <h2 class="list-heading">Projects</h2>
   <ul class="post-list">
     {projects.map((p) => <ProjectCard p={p} />)}
   </ul>

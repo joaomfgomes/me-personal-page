@@ -1,6 +1,6 @@
 # Site pessoal
 
-Site estático em [Astro](https://astro.build), Abre com uma caixa de perguntas ao estilo da página inicial da OpenAI. Por baixo, projetos e notas em lista simples. Letra Figtree, a preto e branco.
+Site estático em [Astro](https://astro.build), Versão clássica: no estilo do borischerny.com com a tipografia do levels.vc (letra do sistema, uma coluna estreita, links azuis e datas a cinzento por cima de cada título).
 
 ## Correr no teu computador
 
@@ -25,7 +25,7 @@ Os projetos e as notas que estão lá são exemplos. Apaga-os quando tiveres os 
 
 ## Funcionalidades
 
-- **Caixa de perguntas** (`askTitle`, `askPlaceholders`, `askChips` em `site.config.ts`): sem configuração, responde a perguntas sobre ti, projetos, contacto, como trabalhas e o que estás a aprender, em inglês ou português, a partir do conteúdo do site. Outras perguntas mostram as páginas mais relevantes. Quando tiveres o teu RAG, põe o URL em `askEndpoint` (recebe `POST {question}` e devolve `{answer, sources:[{title,url}]}`) e as métricas em `askStats`.
+- **Caixa de perguntas**: sem configuração, pesquisa no conteúdo do site e devolve as páginas mais relevantes. As sugestões estão em `askQuestions` em `site.config.ts`. Quando tiveres o teu RAG, põe o URL em `askEndpoint` (recebe `POST {question}` e devolve `{answer, sources:[{title,url}]}`) e as métricas em `askStats`.
 - **Pesquisa ⌘K / Ctrl K** em todas as páginas, sem servidor.
 - **Contacto** no fim da página inicial, dos projetos, das notas e do About: email com botão para copiar, LinkedIn, GitHub, CV e a promessa de resposta (`replyPromise`).
 - **Modo escuro**, **RSS** em `/rss.xml` e **`/llms.txt`** gerados automaticamente.
