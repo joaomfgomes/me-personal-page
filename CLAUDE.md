@@ -7,7 +7,8 @@ Ver `README.md` para estrutura, comandos e como editar.
 ## Estado em 2026-11-18
 
 - **Publicado** em https://joaomiguelgomes.com e www (Cloudflare Workers com static assets, `site/wrangler.jsonc`). Deploy: `cd site && npm run deploy`.
-- **Código** em GitHub: repositório `joaomfgomes/me-personal-page` (ramos `main` e `versao-classica`).
+- **Código:** Git local com os ramos `main` e `versao-classica`. **Ainda não está no GitHub**: a criação do repositório `joaomfgomes/me-personal-page` foi bloqueada pelas permissões e falta o João decidir se é público ou privado. Comando: `gh repo create joaomfgomes/me-personal-page --public --source . --push && git push origin versao-classica` (ou `--private`).
+- **Cloudflare:** sessão do wrangler iniciada na conta joaomfg94@gmail.com. Worker `joaomiguelgomes` com os domínios `joaomiguelgomes.com` e `www.joaomiguelgomes.com`.
 - **Versão ativa:** `main`, estilo página inicial da OpenAI (caixa de perguntas centrada, sugestões em pílulas, letra Figtree, preto e branco, links azuis `#2a7ae2`).
 - **`indexable: false`** em `site.config.ts`: o site tem `noindex` e o `robots.txt` bloqueia tudo, porque o conteúdo ainda é de exemplo.
 
