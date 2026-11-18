@@ -3,7 +3,8 @@ export type Doc = { kind: string; title: string; summary: string; url: string; t
 export type Hit = Doc & { score: number };
 
 let cache: Promise<Doc[]> | null = null;
-const load = () => (cache ??= fetch('/search.json').then((r) => r.json()));
+const load = (): Promise<Doc[]> =>
+  (cache ??= fetch('/search.json').then((r) => r.json() as Promise<Doc[]>));
 
 const esc = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -16,7 +17,7 @@ export async function searchIndex(query: string, limit = 8): Promise<Hit[]> {
   if (!terms.length) return [];
   const docs = await load();
   return docs
-    .map((d) => {
+    .map((d): Hit => {
       const title = tokens(d.title).join(' ');
       const summary = tokens(d.summary).join(' ');
       const body = tokens(d.text).join(' ');

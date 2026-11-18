@@ -3,3 +3,9 @@ dist/
 .astro/
 .wrangler/
 .DS_Store
+
+# Ferramentas locais
+.claude/
+.vscode/
+.dev.vars
+.env

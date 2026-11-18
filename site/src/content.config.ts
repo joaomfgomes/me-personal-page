@@ -13,8 +13,8 @@ const projects = defineCollection({
     metrics: z.array(z.string()).max(3).default([]),
     stack: z.array(z.string()).default([]),
     status: z.enum(['live', 'in progress', 'archived']).default('in progress'),
-    repo: z.string().url().optional(),
-    demo: z.string().url().optional(),
+    repo: z.url().optional(),
+    demo: z.url().optional(),
     order: z.number().default(99),
   }),
 });

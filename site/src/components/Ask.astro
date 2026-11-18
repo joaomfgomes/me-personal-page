@@ -91,6 +91,10 @@ const profile = {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
   });
 
+  // "Junior AI engineer" -> "junior AI engineer"; leaves acronyms like "AI engineer" alone.
+  const lowerFirst = (s: string) => (/^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s);
+  const article = (s: string) => (/^[aeiou]/i.test(s) ? 'an' : 'a');
+
   // Answers written from the site's own content, for questions about me.
   const has = (q: string, words: string[]) => words.some((w) => q.includes(w));
   function localAnswer(raw: string): string | null {
@@ -119,7 +123,7 @@ const profile = {
       return p(profile.about[profile.about.length - 1]);
     }
     if (has(q, ['who are you', 'about you', 'yourself', 'background', 'your story', 'quem es', 'quem e', 'sobre ti', 'percurso'])) {
-      return p(`I’m ${profile.name}, a ${profile.role.toLowerCase().replace('ai', 'AI')} in ${profile.location}.`) +
+      return p(`I’m ${profile.name}, ${article(profile.role)} ${lowerFirst(profile.role)} in ${profile.location}.`) +
         profile.about.slice(0, 1).map(p).join('') + `<p>${link('/about', 'More about me')}</p>`;
     }
     return null;

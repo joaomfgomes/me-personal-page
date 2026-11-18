@@ -1,5 +1,8 @@
 // Tudo o que é "teu" e muda pouco está aqui. Edita este ficheiro primeiro.
 export const site = {
+  // false enquanto o site tiver conteúdo de exemplo: pede aos motores de busca para não o indexar.
+  // Muda para true quando os textos e projetos forem todos teus.
+  indexable: false,
   name: 'João Miguel Gomes',
   handle: 'joaomiguelgomes',
   initials: 'JMG',

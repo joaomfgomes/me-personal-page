@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { emphasis } from '../lib/format';
 interface Props { p: CollectionEntry<'projects'> }
 const { p } = Astro.props;
 const state = { live: 'Live', 'in progress': 'In progress', archived: 'Archived' }[p.data.status];
